@@ -18,9 +18,16 @@ namespace SyberyCIStestask
                     string grouppedString = "";
                     grouppedString = String.Concat(" | ",group.Key.DayOfWeek," | ");
                     Console.Write(grouppedString);
-                    foreach (var report in group)
+                    var grouppedReports = group.OrderByDescending(t => t.Hours).ToList();
+                    int reportCounter = 0;
+                    foreach (var report in grouppedReports)
                     {
                         Console.Write(String.Concat( report.Emploee.Name, "(", Math.Round(report.Hours,2), ")", ", "));
+                        reportCounter++;
+                        if(reportCounter == 3)
+                        {
+                            break;
+                        }
                     }
                     Console.Write("|");
                     Console.WriteLine();
